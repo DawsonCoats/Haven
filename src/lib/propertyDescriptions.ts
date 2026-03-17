@@ -1,0 +1,107 @@
+export const propertyDescriptions: Record<string, { label: string; unit: string; description: string; beginnerTip?: string }> = {
+  density: {
+    label: 'Density',
+    unit: 'g/cm³',
+    description: 'Mass per unit volume. Determines the weight of a component for a given size.',
+    beginnerTip: 'Lower density = lighter material. Aluminum (~2.7) is about 3× lighter than steel (~7.8) for the same volume.',
+  },
+  tensileStrength: {
+    label: 'Tensile Strength (UTS)',
+    unit: 'MPa',
+    description: 'Maximum stress a material can withstand while being stretched before breaking. Ultimate tensile strength (UTS).',
+    beginnerTip: 'Think of this as how hard you have to pull before the material snaps apart. Higher = stronger.',
+  },
+  yieldStrength: {
+    label: 'Yield Strength',
+    unit: 'MPa',
+    description: 'Stress at which a material begins to deform permanently (plastically). Below this, deformation is elastic (springs back).',
+    beginnerTip: 'The point where the material stops "bouncing back" and starts permanently bending. This is usually the design limit.',
+  },
+  elongation: {
+    label: 'Elongation at Break',
+    unit: '%',
+    description: 'Percentage increase in length before fracture. A measure of ductility.',
+    beginnerTip: 'How much the material can stretch before breaking. High elongation = more warning before failure (ductile). Low = brittle.',
+  },
+  hardness: {
+    label: 'Hardness',
+    unit: 'HB / HRC',
+    description: 'Resistance to surface indentation. Correlates with wear resistance and (roughly) tensile strength.',
+    beginnerTip: 'Harder materials resist scratches and wear better, but may be more brittle. Brinell (HB) for softer materials, Rockwell C (HRC) for harder.',
+  },
+  elasticModulus: {
+    label: 'Elastic Modulus (Young\'s Modulus)',
+    unit: 'GPa',
+    description: 'Stiffness of the material — how much it resists elastic deformation under load. Ratio of stress to strain in the elastic region.',
+    beginnerTip: 'Stiffness — how much it bends under a load before snapping back. Steel (~200 GPa) is ~3× stiffer than aluminum (~70 GPa).',
+  },
+  shearModulus: {
+    label: 'Shear Modulus',
+    unit: 'GPa',
+    description: 'Resistance to shear deformation — relevant for torsion and shear-loaded joints.',
+  },
+  poissonRatio: {
+    label: 'Poisson\'s Ratio',
+    unit: 'dimensionless',
+    description: 'Ratio of lateral strain to axial strain. Describes how material bulges sideways when compressed lengthwise.',
+    beginnerTip: 'Most metals are around 0.28–0.33. Rarely a critical design parameter for most applications.',
+  },
+  fatigueStrength: {
+    label: 'Fatigue Strength',
+    unit: 'MPa',
+    description: 'Maximum cyclic stress a material can endure for 10⁷ cycles without failure (endurance limit or at specified cycles).',
+    beginnerTip: 'How strong the material is under repeated loading (like vibrations or rotating shafts). Often much lower than UTS.',
+  },
+  thermalConductivity: {
+    label: 'Thermal Conductivity',
+    unit: 'W/m·K',
+    description: 'Rate of heat transfer through the material. Higher = better heat conductor.',
+    beginnerTip: 'Aluminum conducts heat much better than steel, which is why heat sinks are often aluminum.',
+  },
+  thermalExpansion: {
+    label: 'Thermal Expansion (CTE)',
+    unit: 'µm/m·°C',
+    description: 'How much the material expands per degree of temperature rise (coefficient of thermal expansion).',
+    beginnerTip: 'Important when joining different materials — if they expand at different rates, joints can crack under temperature changes.',
+  },
+  specificHeat: {
+    label: 'Specific Heat',
+    unit: 'J/kg·K',
+    description: 'Energy required to raise 1 kg of the material by 1°C.',
+  },
+  meltingRange: {
+    label: 'Melting Range',
+    unit: '°C',
+    description: 'Temperature range over which the material transitions from solid to liquid.',
+  },
+  weldability: {
+    label: 'Weldability',
+    unit: '',
+    description: 'Ease of producing a sound, defect-free weld. Considers susceptibility to cracking, porosity, and loss of properties in the HAZ.',
+    beginnerTip: 'Excellent = weld it any way you like. Poor = needs pre-heat, special fillers, or post-weld heat treatment. Very poor = best avoided.',
+  },
+  machinability: {
+    label: 'Machinability',
+    unit: '',
+    description: 'Ease of cutting, drilling, and machining. Considers tool life, surface finish achievable, and cutting speed.',
+    beginnerTip: 'Excellent = cuts easily with good finish. Poor = hard on tools, slow speeds, rough surface. Relates to cost per machined part.',
+  },
+  formability: {
+    label: 'Formability',
+    unit: '',
+    description: 'Ability to be plastically deformed (bent, drawn, rolled) without cracking.',
+    beginnerTip: 'High formability = can be bent into complex shapes without cracking. Low = will crack if bent too sharply.',
+  },
+  corrosionResistance: {
+    label: 'Corrosion Resistance',
+    unit: '',
+    description: 'Resistance to oxidation and chemical attack in typical environments. Highly environment-dependent.',
+    beginnerTip: 'Excellent = use bare outdoors. Poor = needs paint, plating, or other protection. Environment (saltwater, acids) changes this dramatically.',
+  },
+  relativeCost: {
+    label: 'Relative Cost',
+    unit: '1–5 scale',
+    description: 'Relative material cost within its family (1 = most economical, 5 = premium). Excludes processing costs.',
+    beginnerTip: 'A rough guide only — machining, heat treatment, and form factor (sheet vs rod) can dominate total cost.',
+  },
+};
