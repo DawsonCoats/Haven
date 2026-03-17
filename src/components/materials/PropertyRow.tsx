@@ -1,21 +1,24 @@
 'use client';
 
 import { Tooltip } from '../ui/Tooltip';
-import { useViewMode } from '../ui/ViewToggle';
 import { Range } from '../../data/types';
 import clsx from 'clsx';
+import { useUnits } from '../ui/UnitsContext';
+import { unitLabels, formatValue, formatRange as fmtRange } from '../../lib/units';
+
+type UnitType = keyof typeof unitLabels;
 
 interface PropertyRowProps {
   label: string;
   value: string | number | Range | null | undefined;
   unit?: string;
+  unitType?: UnitType;
   description?: string;
-  beginnerTip?: string;
   highlight?: boolean;
   className?: string;
 }
 
-function formatRange(range: Range, unit?: string): string {
+function formatRangeLegacy(range: Range, unit?: string): string {
   if (range.typical != null) {
     return `${range.typical}${unit ? ' ' + unit : ''} (${range.min}–${range.max})`;
   }
@@ -23,19 +26,33 @@ function formatRange(range: Range, unit?: string): string {
   return `${range.min}–${range.max}${unit ? ' ' + unit : ''}`;
 }
 
-export function PropertyRow({ label, value, unit, description, beginnerTip, highlight, className }: PropertyRowProps) {
-  const { mode } = useViewMode();
+export function PropertyRow({ label, value, unit, unitType, description, highlight, className }: PropertyRowProps) {
+  const { units } = useUnits();
 
   if (value === null || value === undefined) return null;
 
   let displayValue: string;
-  if (typeof value === 'object' && 'min' in value) {
-    displayValue = formatRange(value as Range, unit);
+
+  if (unitType) {
+    const label_ = unitLabels[unitType][units];
+    if (typeof value === 'object' && 'min' in value) {
+      const rangeStr = fmtRange(value as Range, unitType, units);
+      displayValue = `${rangeStr} ${label_}`;
+    } else if (typeof value === 'number') {
+      displayValue = `${formatValue(value, unitType, units)} ${label_}`;
+    } else {
+      // string value — can't convert, just show with unit label
+      displayValue = `${value} ${label_}`;
+    }
   } else {
-    displayValue = `${value}${unit ? ' ' + unit : ''}`;
+    if (typeof value === 'object' && 'min' in value) {
+      displayValue = formatRangeLegacy(value as Range, unit);
+    } else {
+      displayValue = `${value}${unit ? ' ' + unit : ''}`;
+    }
   }
 
-  const tooltipText = mode === 'beginner' && beginnerTip ? beginnerTip : description ?? '';
+  const tooltipText = description ?? '';
 
   return (
     <div className={clsx(

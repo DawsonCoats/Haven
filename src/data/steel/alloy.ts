@@ -623,4 +623,195 @@ export const steel52100: Material = {
   relatedMaterials: ['steel-4140', 'steel-440Css', 'steel-4340'],
 };
 
-export const alloySteels: Material[] = [steel4130, steel4140, steel4340, steel8620, steel4150, steel52100];
+export const steelH13: Material = {
+  id: 'steel-h13',
+  name: 'H13 Tool Steel',
+  family: 'steel',
+  subFamily: 'Tool Steel',
+  mechanical: {
+    density: 7.76,
+    tensileStrength: { min: 1000, max: 1900, typical: 1380 },
+    yieldStrength: { min: 900, max: 1700, typical: 1200 },
+    elongation: { min: 8, max: 14, typical: 10 },
+    hardness: {
+      brinell: { min: 192, max: 560, typical: 420 },
+      rockwellC: { min: 20, max: 55, typical: 44 },
+    },
+    elasticModulus: 215,
+    shearModulus: 82,
+    poissonRatio: 0.28,
+    fatigueStrength: { min: 550, max: 800, typical: 650 },
+  },
+  thermal: {
+    conductivity: 24.4,
+    thermalExpansion: 11.5,
+    specificHeat: 460,
+    meltingRange: { min: 1315, max: 1425 },
+  },
+  processability: {
+    weldability: 'Fair',
+    machinability: 'Fair',
+    formability: 'Poor',
+    heatTreatable: true,
+    weldNotes:
+      'Fair weldability — preheat to 315-370°C mandatory. Post-weld stress relief or full re-hardening cycle required. Use matching H13 filler rod (AWS A5.13 EFe5-B). Welding of hardened H13 is strongly discouraged; repair weld only in the annealed or pre-hardened condition.',
+  },
+  standards: {
+    astm: ['A681'],
+    ams: ['7477'],
+    uns: 'T20813',
+  },
+  corrosionResistance: 'Fair',
+  relativeCost: 3,
+  description:
+    'H13 (AISI H13, UNS T20813) is the most widely used hot-work tool steel in North America, with approximately 0.38% carbon, 5.0% chromium, 1.5% molybdenum, 1.0% vanadium, and 1.0% silicon. The high chromium and molybdenum content provide exceptional resistance to thermal fatigue (heat checking) and oxidation at elevated temperatures, while vanadium carbides resist abrasive wear. H13 is used extensively for die casting dies, extrusion tooling, forging dies, and plastic injection molds because it maintains hardness and toughness at service temperatures up to 540°C. It is also specified for aluminum, zinc, and magnesium die casting dies where thermal cycling causes rapid die failure with lower-alloy tool steels.',
+  keyCharacteristics: [
+    'Most widely used hot-work tool steel — standard for die casting and forging dies',
+    'Excellent thermal fatigue (heat checking) resistance from 5% Cr + 1% Mo + 1% V',
+    'Air-hardenable — minimal distortion during heat treatment vs oil-quenched steels',
+    'Maintains adequate hardness and toughness up to ~540°C service temperature',
+    'Premium vacuum melt (VAR) quality available for critical die casting applications',
+    'Nitriding surface treatment improves heat checking and erosion resistance',
+  ],
+  commonApplications: [
+    'Aluminum and zinc die casting dies',
+    'Extrusion tooling (dies, liners, mandrels)',
+    'Forging dies and inserts',
+    'Plastic injection mold tooling',
+    'Die casting shot sleeves and plungers',
+    'Hot shear blades and punches',
+    'High-temperature fasteners and inserts',
+  ],
+  industries: ['Tooling', 'Automotive', 'Plastics', 'Forging', 'Die Casting'],
+  beginnerNote:
+    'H13 is the standard tool steel for anything that gets hot during use — die casting dies, forging dies, extrusion tooling. The "H" in H13 stands for hot-work. Its combination of chromium and molybdenum lets it resist cracking from rapid thermal cycling (being heated and cooled repeatedly), which would crack a regular steel quickly. For plastic injection molds that don\'t run particularly hot, H13 is also used for its excellent combination of toughness and hardness.',
+  expertNote:
+    'H13 composition (AISI): 0.32-0.45% C, 4.75-5.50% Cr, 1.10-1.75% Mo, 0.80-1.20% V, 0.80-1.20% Si. Heat treatment: austenitize 1000-1050°C (VAR quality 1010-1040°C), air or positive pressure quench, double temper (2×2h) at 540-650°C to HRC 44-50 for die casting dies. Higher tempering to HRC 38-42 gives better toughness for large forging dies. Temper resistance: H13 at HRC 44 retains ~HRC 40 after 4h at 540°C — essential for die life. Heat checking mechanism: tensile thermal stresses on heating exceed yield strength → plastic deformation → compressive residual stresses on cooling → fatigue cracks after many cycles. VAR quality (Electro Slag Remelted / Vacuum Arc Remelted) contains ≤10 ppm S vs 30-50 ppm for conventional melt — dramatically improves transverse toughness and die life. NADCA #207 specification for premium die casting die steel.',
+  tempers: [
+    {
+      designation: 'Annealed (A)',
+      description:
+        'Furnace-cooled from ~870°C — maximum softness for machining; standard pre-hardening delivery condition',
+      tensileStrength: { min: 930, max: 1050, typical: 1000 },
+      yieldStrength: { min: 850, max: 930, typical: 900 },
+      elongation: { min: 11, max: 15, typical: 13 },
+      hardness: { brinell: 192 },
+    },
+    {
+      designation: 'Hardened + Tempered 540°C (HRC 48-50)',
+      description:
+        'Austenitized at 1010-1040°C, air quenched, double tempered at 540°C — standard condition for die casting dies',
+      tensileStrength: { min: 1600, max: 1750, typical: 1650 },
+      yieldStrength: { min: 1380, max: 1550, typical: 1450 },
+      elongation: { min: 8, max: 12, typical: 10 },
+      hardness: { rockwellC: 49 },
+    },
+    {
+      designation: 'Hardened + Tempered 620°C (HRC 42-44)',
+      description:
+        'Austenitized at 1010-1040°C, air quenched, double tempered at 620°C — standard for large forging dies requiring higher toughness',
+      tensileStrength: { min: 1380, max: 1520, typical: 1420 },
+      yieldStrength: { min: 1200, max: 1310, typical: 1240 },
+      elongation: { min: 10, max: 14, typical: 12 },
+      hardness: { rockwellC: 43 },
+    },
+  ],
+  relatedMaterials: ['steel-d2', 'steel-4140', 'steel-4340'],
+};
+
+export const steelD2: Material = {
+  id: 'steel-d2',
+  name: 'D2 Tool Steel',
+  family: 'steel',
+  subFamily: 'Tool Steel',
+  mechanical: {
+    density: 7.70,
+    tensileStrength: { min: 758, max: 1520, typical: 1000 },
+    yieldStrength: { min: 550, max: 1380, typical: 860 },
+    elongation: { min: 1, max: 12, typical: 5 },
+    hardness: {
+      brinell: { min: 190, max: 620, typical: 380 },
+      rockwellC: { min: 20, max: 62, typical: 58 },
+    },
+    elasticModulus: 210,
+    shearModulus: 81,
+    poissonRatio: 0.28,
+    fatigueStrength: { min: 400, max: 620, typical: 480 },
+  },
+  thermal: {
+    conductivity: 17.5,
+    thermalExpansion: 10.7,
+    specificHeat: 460,
+    meltingRange: { min: 1290, max: 1380 },
+  },
+  processability: {
+    weldability: 'Poor',
+    machinability: 'Fair',
+    formability: 'Poor',
+    heatTreatable: true,
+    weldNotes:
+      'Poor weldability — very high carbon (1.5%) and 12% Cr make welding impractical without cracking. Preheat to 425-480°C required; immediate post-weld PWHT required; cracks form readily during cooling. Welding is strongly discouraged; replace or machine the component instead.',
+  },
+  standards: {
+    astm: ['A681'],
+    uns: 'T30402',
+  },
+  corrosionResistance: 'Fair',
+  relativeCost: 3,
+  description:
+    'D2 (AISI D2, UNS T30402) is a high-carbon, high-chromium cold-work tool steel with approximately 1.5% carbon and 12% chromium. The very high carbon and chromium content results in a large volume fraction of hard chromium carbides (primarily Cr7C3 and Cr23C6) which provide outstanding abrasion resistance and excellent wear life. While D2 cannot be classified as stainless steel (it requires 13%+ Cr), the 12% Cr gives it much better corrosion resistance than conventional tool steels. It is the standard material for long-run blanking and forming dies, shear blades, and punches where tool life (number of parts per grind) is the critical metric.',
+  keyCharacteristics: [
+    'Exceptional abrasion resistance from large volume of hard chromium carbides',
+    '12% Cr provides semi-stainless corrosion resistance — far better than standard tool steels',
+    'Excellent dimensional stability during heat treatment — minimal distortion vs oil-hardened steels',
+    'Air-hardenable — no quench medium distortion; suitable for complex die geometries',
+    'High hardness achievable: 58-62 HRC after hardening',
+    'Lower toughness than H13 — not suitable for impact or shock loading',
+  ],
+  commonApplications: [
+    'Blanking and punching dies for high-volume production',
+    'Cold forming and coining dies',
+    'Thread rolling dies',
+    'Long-run shear blades',
+    'Wear-resistant plastic mold components',
+    'Draw dies for wire and tube',
+    'Slitter blades and trimmer knives',
+  ],
+  industries: ['Tooling', 'Metal Stamping', 'Automotive', 'Plastics'],
+  beginnerNote:
+    "D2 is the go-to tool steel when wear resistance is the #1 priority. It has an enormous amount of chromium carbides — microscopic hard particles scattered through the steel — that act like tiny abrasion-resistant balls. A D2 die can produce 10-50× more parts between sharpenings than a simpler tool steel. The tradeoff: D2 is brittle compared to tougher tool steels and can't handle shock or impact loading. It's a good choice for dies that punch or blank sheet metal repetitively, but not for dies that hammer hot forging stock.",
+  expertNote:
+    'D2 composition: 1.40-1.60% C, 11.00-13.00% Cr, 0.70-1.20% Mo, 0.10-1.10% V. Primary carbides: ~15-20 vol% chromium carbides (Cr7C3 dominant, HV ~1600) plus secondary carbides from tempering. Heat treatment: austenitize 1010-1040°C (soak to dissolve carbides into matrix), air cool or positive-pressure gas quench, temper 150-205°C for HRC 60-62 (wear applications) or 315-425°C for HRC 55-58 (better toughness). Retained austenite: 15-25% after quench from 1040°C — reduce by subzero treatment (-85°C) for dimensional-critical dies. D2 vs M2 HSS: D2 is superior in abrasion resistance for cold work; M2 is superior for cutting tool applications (hot hardness). CPM D2 (Crucible Particle Metallurgy): uniform carbide distribution vs conventional ingot-cast D2 — CPM D2 achieves 2-3× longer die life in many applications. ASTM A681 covers annealed bar.',
+  tempers: [
+    {
+      designation: 'Annealed (A)',
+      description:
+        'Spheroidize annealed at 870-900°C — spheroidal carbide structure for machining; standard pre-hardening condition',
+      tensileStrength: { min: 758, max: 860, typical: 790 },
+      yieldStrength: { min: 530, max: 620, typical: 550 },
+      elongation: { min: 8, max: 14, typical: 10 },
+      hardness: { brinell: 220 },
+    },
+    {
+      designation: 'Hardened + Tempered 180°C (HRC 60-62)',
+      description:
+        'Austenitized at 1010-1040°C, air quenched, tempered at 175-180°C — maximum hardness for high wear resistance applications',
+      tensileStrength: { min: 1450, max: 1650, typical: 1520 },
+      yieldStrength: { min: 1300, max: 1480, typical: 1380 },
+      elongation: { min: 1, max: 3, typical: 1 },
+      hardness: { rockwellC: 61 },
+    },
+    {
+      designation: 'Hardened + Tempered 425°C (HRC 54-57)',
+      description:
+        'Austenitized at 1010-1040°C, air quenched, tempered at 425°C — improved toughness while retaining good wear resistance',
+      tensileStrength: { min: 1200, max: 1380, typical: 1280 },
+      yieldStrength: { min: 1050, max: 1200, typical: 1100 },
+      elongation: { min: 3, max: 7, typical: 5 },
+      hardness: { rockwellC: 55 },
+    },
+  ],
+  relatedMaterials: ['steel-h13', 'steel-52100', 'steel-4140'],
+};
+
+export const alloySteels: Material[] = [steel4130, steel4140, steel4340, steel8620, steel4150, steel52100, steelH13, steelD2];

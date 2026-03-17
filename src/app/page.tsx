@@ -1,7 +1,8 @@
+import React from 'react';
 import Link from 'next/link';
 import { SearchBar } from '../components/ui/SearchBar';
 import { allMaterials, getMaterialsByFamily } from '../data';
-import { ArrowRight, Zap, Shield, Wrench, GitCompare } from 'lucide-react';
+import { ArrowRight, Zap, Shield, Wrench, GitCompare, Flame, Square, Droplets } from 'lucide-react';
 import { AshbyPlot } from '../components/charts';
 
 
@@ -36,20 +37,32 @@ export default function HomePage() {
         </p>
       </div>
 
-      {/* Feature highlights */}
-      <div className="grid grid-cols-2 sm:grid-cols-4 gap-4 mb-12">
-        {[
-          { icon: Zap, label: 'Strength Data', desc: 'UTS, yield, fatigue' },
-          { icon: Shield, label: 'Corrosion', desc: 'Environment ratings' },
-          { icon: Wrench, label: 'Processability', desc: 'Weld, machine, form' },
-          { icon: GitCompare, label: 'Compare', desc: 'Side-by-side deltas' },
-        ].map(({ icon: Icon, label, desc }) => (
-          <div key={label} className="rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4 text-center">
-            <Icon className="w-5 h-5 text-blue-400 mx-auto mb-2" />
-            <p className="text-sm font-medium text-zinc-200">{label}</p>
-            <p className="text-xs text-zinc-500 mt-0.5">{desc}</p>
-          </div>
-        ))}
+      {/* Quick Filters */}
+      <div className="mb-12">
+        <h2 className="text-sm font-semibold text-zinc-500 uppercase tracking-widest mb-3">Quick Filters</h2>
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-4 gap-3">
+          {([
+            { icon: Zap,        label: 'Strength Data',      sub: 'Sort by UTS, yield, fatigue',   href: '/materials?sort=strength' },
+            { icon: Shield,     label: 'Corrosion Resistant', sub: 'Good+ corrosion resistance',   href: '/materials?minCorrosion=Good%2B' },
+            { icon: Flame,      label: 'Weldable',           sub: 'Good+ weldability',             href: '/materials?minWeldability=Good%2B' },
+            { icon: Wrench,     label: 'Machinable',         sub: 'Good+ machinability',           href: '/materials?minMachinability=Good%2B' },
+            { icon: Square,     label: 'Formable',           sub: 'Bend, roll, stamp',             href: '/materials?minFormability=Good%2B' },
+            { icon: Droplets,   label: 'Castable',           sub: 'Good+ castability',             href: '/materials?minCastability=Good%2B' },
+            { icon: GitCompare, label: 'Compare',            sub: 'Side-by-side analysis',         href: '/compare' },
+          ] as { icon: React.ElementType; label: string; sub: string; href: string }[]).map(({ icon: Icon, label, sub, href }) => (
+            <Link
+              key={label}
+              href={href}
+              className="group flex items-start gap-3 rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4 hover:bg-zinc-800/60 hover:border-zinc-600 transition-all"
+            >
+              <Icon className="w-5 h-5 text-blue-400 shrink-0 mt-0.5 group-hover:text-blue-300 transition-colors" />
+              <div className="min-w-0">
+                <p className="text-sm font-medium text-zinc-200 group-hover:text-white leading-tight">{label}</p>
+                <p className="text-xs text-zinc-500 mt-0.5 leading-tight">{sub}</p>
+              </div>
+            </Link>
+          ))}
+        </div>
       </div>
 
       {/* Family cards */}

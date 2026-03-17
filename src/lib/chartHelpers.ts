@@ -36,6 +36,8 @@ export const SUBFAMILY_COLORS: Record<string, string> = {
   // Titanium
   'cp-Ti':                 '#94a3b8', // slate-400
   'Alpha-Beta':            '#64748b', // slate-500
+  // Tool Steel
+  'Tool Steel':            '#dc2626', // red-600
   // Copper
   'Pure Copper':           '#f97316', // orange-500
   'Beryllium Copper':      '#eab308', // yellow-500

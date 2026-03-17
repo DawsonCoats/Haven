@@ -2,9 +2,9 @@
 
 import Link from 'next/link';
 import { usePathname } from 'next/navigation';
-import { Layers, GitCompare, Home, ChevronDown } from 'lucide-react';
+import { Layers, GitCompare, Home, ChevronDown, Zap } from 'lucide-react';
 import { SearchBar } from '../ui/SearchBar';
-import { ViewToggle } from '../ui/ViewToggle';
+import { UnitsToggle } from '../ui/UnitsContext';
 import clsx from 'clsx';
 import { useState } from 'react';
 
@@ -12,6 +12,7 @@ const navLinks = [
   { href: '/', label: 'Home', icon: Home },
   { href: '/materials', label: 'Browse', icon: Layers },
   { href: '/compare', label: 'Compare', icon: GitCompare },
+  { href: '/compatibility', label: 'Compatibility', icon: Zap },
 ];
 
 export function NavBar() {
@@ -80,15 +81,14 @@ export function NavBar() {
           </div>
         </div>
 
-        {/* Search */}
-        <div className="flex-1 max-w-sm hidden sm:block">
-          <SearchBar />
+        {/* Search + Units toggle */}
+        <div className="flex-1 flex items-center gap-3 justify-end">
+          <div className="max-w-sm flex-1 hidden sm:block">
+            <SearchBar />
+          </div>
+          <UnitsToggle className="shrink-0" />
         </div>
 
-        {/* View toggle */}
-        <div className="ml-auto shrink-0">
-          <ViewToggle />
-        </div>
       </nav>
     </header>
   );

@@ -31,3 +31,79 @@ body {
 ::-webkit-scrollbar-thumb:hover {
   background: #52525b;
 }
+
+/* ── Print / Data Sheet styles ─────────────────────────────────────────── */
+.no-print {
+  /* visible on screen; hidden in print */
+}
+
+@media print {
+  /* Reset to white-on-black for readability */
+  :root {
+    --background: #ffffff;
+    --foreground: #000000;
+  }
+
+  body {
+    background: #ffffff !important;
+    color: #000000 !important;
+    font-size: 11pt;
+  }
+
+  /* Hide interactive / decorative elements */
+  .no-print,
+  nav,
+  header {
+    display: none !important;
+  }
+
+  /* Force single-column layout */
+  .lg\:grid-cols-3 {
+    display: block !important;
+  }
+
+  /* Printed page header */
+  body::before {
+    content: "Haven Material Database";
+    display: block;
+    font-size: 9pt;
+    color: #555555;
+    border-bottom: 1px solid #cccccc;
+    padding-bottom: 4pt;
+    margin-bottom: 12pt;
+  }
+
+  /* Clean up card backgrounds for print */
+  [class*="bg-zinc"],
+  [class*="bg-blue"],
+  [class*="bg-emerald"],
+  [class*="bg-purple"] {
+    background: transparent !important;
+  }
+
+  [class*="border-zinc"] {
+    border-color: #cccccc !important;
+  }
+
+  [class*="text-zinc-100"],
+  [class*="text-zinc-200"],
+  [class*="text-zinc-300"] {
+    color: #111111 !important;
+  }
+
+  [class*="text-zinc-400"],
+  [class*="text-zinc-500"],
+  [class*="text-zinc-600"] {
+    color: #555555 !important;
+  }
+
+  /* Avoid page breaks inside sections */
+  section {
+    break-inside: avoid;
+  }
+
+  a {
+    color: inherit;
+    text-decoration: none;
+  }
+}

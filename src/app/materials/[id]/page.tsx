@@ -5,10 +5,12 @@ import { PropertyRow } from '../../../components/materials/PropertyRow';
 import { RatingBadge } from '../../../components/materials/RatingBadge';
 import { TemperTable } from '../../../components/materials/TemperTable';
 import { RelatedMaterials } from '../../../components/materials/RelatedMaterials';
-import { ViewToggle } from '../../../components/ui/ViewToggle';
 import { propertyDescriptions } from '../../../lib/propertyDescriptions';
-import { GitCompare, ArrowLeft, FlaskConical } from 'lucide-react';
-import { MaterialRadar } from '../../../components/charts';
+import { GitCompare, ArrowLeft } from 'lucide-react';
+import { MaterialRadar, GoodmanChart } from '../../../components/charts';
+import { DataSheetButton } from './DataSheetButton';
+import { CoatingsPanel } from '../../../components/materials/CoatingsPanel';
+import { estimateCost } from '../../../data/pricing';
 import type { Metadata } from 'next';
 import type { Material } from '../../../data/types';
 
@@ -64,7 +66,7 @@ export default async function MaterialDetailPage({ params }: Props) {
   return (
     <div className="max-w-7xl mx-auto px-4 py-8">
       {/* Breadcrumb */}
-      <nav className="flex items-center gap-2 text-xs text-zinc-500 mb-6">
+      <nav className="no-print flex items-center gap-2 text-xs text-zinc-500 mb-6">
         <Link href="/" className="hover:text-zinc-300">Home</Link>
         <span>/</span>
         <Link href="/materials" className="hover:text-zinc-300">Materials</Link>
@@ -85,10 +87,10 @@ export default async function MaterialDetailPage({ params }: Props) {
                 <h1 className="text-3xl font-bold text-zinc-100 mt-1">{m.name}</h1>
               </div>
               <div className="flex items-center gap-2 shrink-0 mt-1">
-                <ViewToggle />
+                <DataSheetButton />
                 <Link
                   href={`/compare?ids=${m.id}`}
-                  className="flex items-center gap-1.5 px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-500 transition-all"
+                  className="no-print flex items-center gap-1.5 px-3 py-2 rounded-lg bg-zinc-800 border border-zinc-700 text-sm text-zinc-300 hover:text-zinc-100 hover:border-zinc-500 transition-all"
                 >
                   <GitCompare className="w-3.5 h-3.5" />
                   Compare
@@ -118,27 +120,27 @@ export default async function MaterialDetailPage({ params }: Props) {
           <section>
             <h2 className="text-lg font-semibold text-zinc-200 mb-3">Mechanical Properties</h2>
             <div className="rounded-xl bg-zinc-800/20 border border-zinc-700/50 divide-y divide-zinc-700/30 overflow-hidden">
-              <PropertyRow label="Density" value={m.mechanical.density} unit="g/cm³"
-                description={pd.density?.description} beginnerTip={pd.density?.beginnerTip} highlight />
-              <PropertyRow label="Tensile Strength (UTS)" value={m.mechanical.tensileStrength} unit="MPa"
-                description={pd.tensileStrength?.description} beginnerTip={pd.tensileStrength?.beginnerTip} />
-              <PropertyRow label="Yield Strength" value={m.mechanical.yieldStrength} unit="MPa"
-                description={pd.yieldStrength?.description} beginnerTip={pd.yieldStrength?.beginnerTip} highlight />
+              <PropertyRow label="Density" value={m.mechanical.density} unit="g/cm³" unitType="density"
+                description={pd.density?.description} highlight />
+              <PropertyRow label="Tensile Strength (UTS)" value={m.mechanical.tensileStrength} unit="MPa" unitType="stress"
+                description={pd.tensileStrength?.description} />
+              <PropertyRow label="Yield Strength" value={m.mechanical.yieldStrength} unit="MPa" unitType="stress"
+                description={pd.yieldStrength?.description} highlight />
               <PropertyRow label="Elongation" value={m.mechanical.elongation} unit="%"
-                description={pd.elongation?.description} beginnerTip={pd.elongation?.beginnerTip} />
-              <PropertyRow label="Elastic Modulus" value={m.mechanical.elasticModulus} unit="GPa"
-                description={pd.elasticModulus?.description} beginnerTip={pd.elasticModulus?.beginnerTip} highlight />
+                description={pd.elongation?.description} />
+              <PropertyRow label="Elastic Modulus" value={m.mechanical.elasticModulus} unit="GPa" unitType="modulus"
+                description={pd.elasticModulus?.description} highlight />
               {m.mechanical.shearModulus && (
-                <PropertyRow label="Shear Modulus" value={m.mechanical.shearModulus} unit="GPa"
+                <PropertyRow label="Shear Modulus" value={m.mechanical.shearModulus} unit="GPa" unitType="modulus"
                   description={pd.shearModulus?.description} />
               )}
               {m.mechanical.poissonRatio && (
                 <PropertyRow label="Poisson's Ratio" value={m.mechanical.poissonRatio} unit=""
-                  description={pd.poissonRatio?.description} beginnerTip={pd.poissonRatio?.beginnerTip} highlight />
+                  description={pd.poissonRatio?.description} highlight />
               )}
               {m.mechanical.fatigueStrength && (
-                <PropertyRow label="Fatigue Strength" value={m.mechanical.fatigueStrength} unit="MPa"
-                  description={pd.fatigueStrength?.description} beginnerTip={pd.fatigueStrength?.beginnerTip} />
+                <PropertyRow label="Fatigue Strength" value={m.mechanical.fatigueStrength} unit="MPa" unitType="stress"
+                  description={pd.fatigueStrength?.description} />
               )}
             </div>
             {/* Hardness */}
@@ -162,18 +164,31 @@ export default async function MaterialDetailPage({ params }: Props) {
           <section>
             <h2 className="text-lg font-semibold text-zinc-200 mb-3">Thermal Properties</h2>
             <div className="rounded-xl bg-zinc-800/20 border border-zinc-700/50 divide-y divide-zinc-700/30 overflow-hidden">
-              <PropertyRow label="Thermal Conductivity" value={m.thermal.conductivity} unit="W/m·K"
-                description={pd.thermalConductivity?.description} beginnerTip={pd.thermalConductivity?.beginnerTip} highlight />
-              <PropertyRow label="Thermal Expansion (CTE)" value={m.thermal.thermalExpansion} unit="µm/m·°C"
-                description={pd.thermalExpansion?.description} beginnerTip={pd.thermalExpansion?.beginnerTip} />
+              <PropertyRow label="Thermal Conductivity" value={m.thermal.conductivity} unit="W/m·K" unitType="thermalConductivity"
+                description={pd.thermalConductivity?.description} highlight />
+              <PropertyRow label="Thermal Expansion (CTE)" value={m.thermal.thermalExpansion} unit="µm/m·°C" unitType="thermalExpansion"
+                description={pd.thermalExpansion?.description} />
               {m.thermal.specificHeat && (
-                <PropertyRow label="Specific Heat" value={m.thermal.specificHeat} unit="J/kg·K"
+                <PropertyRow label="Specific Heat" value={m.thermal.specificHeat} unit="J/kg·K" unitType="specificHeat"
                   description={pd.specificHeat?.description} highlight />
               )}
               {m.thermal.meltingRange && (
-                <PropertyRow label="Melting Range" value={m.thermal.meltingRange} unit="°C"
+                <PropertyRow label="Melting Range" value={m.thermal.meltingRange} unit="°C" unitType="temperature"
                   description={pd.meltingRange?.description} />
               )}
+            </div>
+          </section>
+
+          {/* Fatigue Analysis */}
+          <section className="no-print">
+            <h2 className="text-lg font-semibold text-zinc-200 mb-3">Fatigue Analysis</h2>
+            <div className="rounded-xl bg-zinc-800/20 border border-zinc-700/50 p-4">
+              <p className="text-xs text-zinc-500 mb-4 leading-relaxed">
+                Modified Goodman diagram — shows the failure boundary and pre-computed example
+                operating points. Points on or above the line are at risk of fatigue failure;
+                points below are in the safe zone.
+              </p>
+              <GoodmanChart material={m} />
             </div>
           </section>
 
@@ -207,6 +222,11 @@ export default async function MaterialDetailPage({ params }: Props) {
               </div>
             )}
           </section>
+
+          {/* Coatings */}
+          <div className="no-print">
+            <CoatingsPanel family={m.family} />
+          </div>
 
           {/* Tempers */}
           {m.tempers && m.tempers.length > 0 && (
@@ -267,7 +287,7 @@ export default async function MaterialDetailPage({ params }: Props) {
           </div>
 
           {/* Property profile radar */}
-          <div className="rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4">
+          <div className="no-print rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4">
             <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wide mb-3">Property Profile</h3>
             <MaterialRadar material={m} />
           </div>
@@ -288,25 +308,42 @@ export default async function MaterialDetailPage({ params }: Props) {
             </p>
           </div>
 
-          {/* Beginner/Expert notes */}
-          {m.beginnerNote && (
-            <div className="rounded-xl bg-blue-900/20 border border-blue-800/50 p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <FlaskConical className="w-3.5 h-3.5 text-blue-400" />
-                <h3 className="text-xs font-semibold text-blue-400 uppercase tracking-wide">Beginner Note</h3>
+          {/* Estimated cost */}
+          {(() => {
+            const cost = estimateCost(m.id, m.mechanical.density);
+            if (!cost) return null;
+            return (
+              <div className="rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4">
+                <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wide mb-3">
+                  Estimated Cost
+                  <span className="ml-1.5 text-[10px] font-normal text-zinc-600 normal-case tracking-normal">2024–2025 est.</span>
+                </h3>
+                <div className="space-y-2">
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-xs text-zinc-500">per lb</span>
+                    <span className="text-sm font-medium text-zinc-200">${cost.pricePerLb.toFixed(2)}</span>
+                  </div>
+                  <div className="flex items-baseline justify-between">
+                    <span className="text-xs text-zinc-500">per kg</span>
+                    <span className="text-sm font-medium text-zinc-200">${cost.pricePerKg.toFixed(2)}</span>
+                  </div>
+                  <div className="flex items-baseline justify-between border-t border-zinc-700/50 pt-2 mt-2">
+                    <span className="text-xs text-zinc-400">per 1″×1″×1″ cube</span>
+                    <div className="text-right">
+                      <span className="text-base font-bold text-emerald-400">${cost.costPerCubeUsd.toFixed(2)}</span>
+                      <p className="text-[10px] text-zinc-600">{cost.massPerCubeLb.toFixed(3)} lb</p>
+                    </div>
+                  </div>
+                </div>
+                {cost.notes && (
+                  <p className="mt-3 text-[11px] text-amber-500/80 leading-relaxed">{cost.notes}</p>
+                )}
+                <p className="mt-3 text-[10px] text-zinc-600 leading-relaxed">
+                  Distributor small-qty prices. Varies ±20–30% by form, temper, and market.
+                </p>
               </div>
-              <p className="text-sm text-blue-200/80">{m.beginnerNote}</p>
-            </div>
-          )}
-          {m.expertNote && (
-            <div className="rounded-xl bg-purple-900/20 border border-purple-800/50 p-4">
-              <div className="flex items-center gap-2 mb-2">
-                <FlaskConical className="w-3.5 h-3.5 text-purple-400" />
-                <h3 className="text-xs font-semibold text-purple-400 uppercase tracking-wide">Expert Note</h3>
-              </div>
-              <p className="text-sm text-purple-200/80">{m.expertNote}</p>
-            </div>
-          )}
+            );
+          })()}
 
           {/* Related */}
           {related.length > 0 && (

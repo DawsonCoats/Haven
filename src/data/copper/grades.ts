@@ -380,6 +380,196 @@ export const copperC932: Material = {
   relatedMaterials: ['cu-c260', 'cu-c110'],
 };
 
+export const copperC510: Material = {
+  id: 'cu-c510',
+  name: 'C510 Phosphor Bronze',
+  family: 'copper',
+  subFamily: 'Bronze',
+  mechanical: {
+    density: 8.86,
+    tensileStrength: { min: 310, max: 690, typical: 325 },
+    yieldStrength: { min: 140, max: 620, typical: 170 },
+    elongation: { min: 3, max: 64, typical: 48 },
+    hardness: {
+      brinell: { min: 55, max: 200, typical: 65 },
+      rockwellB: { min: 10, max: 90, typical: 42 },
+    },
+    elasticModulus: 110,
+    shearModulus: 41,
+    poissonRatio: 0.34,
+    fatigueStrength: { min: 138, max: 241, typical: 165 },
+  },
+  thermal: {
+    conductivity: 69,
+    thermalExpansion: 17.8,
+    specificHeat: 380,
+    meltingRange: { min: 975, max: 1060 },
+  },
+  processability: {
+    weldability: 'Fair',
+    machinability: 'Fair',
+    formability: 'Excellent',
+    heatTreatable: false,
+    weldNotes:
+      'Fair weldability — TIG welding with phosphor bronze or silicon bronze filler is feasible in the annealed condition. High thermal conductivity requires adequate preheat (150-200°C for sections over 6 mm). Silver brazing is preferred for most joining applications. Avoid overheating to prevent tin loss and porosity.',
+  },
+  standards: {
+    astm: ['B103', 'B139', 'B159'],
+    uns: 'C51000',
+  },
+  corrosionResistance: 'Good',
+  relativeCost: 3,
+  description:
+    'C510 phosphor bronze (94.8% Cu, 5.0% Sn, 0.2% P) is the most widely used phosphor bronze. The tin provides solid-solution strengthening and improves corrosion resistance, while the phosphorus (added as a deoxidizer and strengthener) promotes excellent spring properties and fatigue resistance. C510 combines excellent cold-formability in the annealed condition with high strength in the cold-worked condition, outstanding spring fatigue life, and good electrical conductivity (~15% IACS). These properties make it the standard alloy for electrical spring contacts, connectors, and precision springs in electronics and telecommunications.',
+  keyCharacteristics: [
+    'Excellent spring fatigue life — superior to brass, approaches beryllium copper for many applications',
+    'Good corrosion resistance in atmospheric, marine, and mildly acidic environments',
+    'Wide range of tempers from annealed (ductile forming) to spring hard',
+    '~15% IACS electrical conductivity — suitable for electrical contact springs',
+    'Non-magnetic and non-sparking',
+    'Better corrosion resistance than brass due to tin content',
+  ],
+  commonApplications: [
+    'Electrical spring contacts and connectors',
+    'Electronic connector pins and terminals',
+    'Precision springs and spring washers',
+    'Bellows and flexible diaphragms',
+    'Fasteners requiring corrosion resistance',
+    'Bearing bushings (tin bronze, lighter duty than C932)',
+    'Musical instrument reeds and springs',
+  ],
+  industries: ['Electronics', 'Telecommunications', 'Industrial', 'Marine'],
+  beginnerNote:
+    "C510 phosphor bronze is the standard spring copper alloy that isn't beryllium copper. It has good spring properties and fatigue life — so when you flex a C510 spring thousands of times, it doesn't lose its shape. The phosphorus makes it slightly stronger and improves the corrosion resistance. It's used heavily in electronic connectors (the springy metal contacts inside USB ports and similar connectors) because it conducts electricity adequately while providing reliable spring force to maintain contact.",
+  expertNote:
+    'C510 composition: 94.8% Cu, 4.2-5.8% Sn, 0.03-0.35% P (UNS C51000). The phosphorus serves two roles: deoxidizer during casting (removes Cu2O) and precipitation-hardening agent (Cu3P particles at grain boundaries). Spring fatigue: C510 H08 (spring temper) achieves ~165 MPa fatigue endurance at 10^8 cycles vs ~138 MPa for C260 H08 brass — ~20% improvement. Modulus of elasticity in torsion (spring design): 41 GPa. Stress relaxation at 70°C: C510 retains ~92% of initial stress vs ~85% for C260 — important for connectors in warm environments. Cold work response: UTS increases from 325 MPa (O60) to 690 MPa (H08) with 75% cold work, reaching Rockwell B90. C519 (8% Sn) and C521 (8% Sn) are higher-strength versions for demanding spring applications. RoHS compliant (no lead or beryllium).',
+  tempers: [
+    {
+      designation: 'O60 (Annealed)',
+      description:
+        'Fully annealed — maximum ductility for deep forming and drawing; standard for blanks requiring subsequent cold work',
+      tensileStrength: { min: 310, max: 350, typical: 325 },
+      yieldStrength: { min: 140, max: 175, typical: 170 },
+      elongation: { min: 45, max: 64, typical: 48 },
+      hardness: { brinell: 65 },
+    },
+    {
+      designation: 'H02 (1/2 Hard)',
+      description:
+        'Moderate cold rolling — balanced strength and formability for clips and light springs',
+      tensileStrength: { min: 400, max: 480, typical: 440 },
+      yieldStrength: { min: 330, max: 410, typical: 365 },
+      elongation: { min: 20, max: 35, typical: 25 },
+      hardness: { rockwellB: 68 },
+    },
+    {
+      designation: 'H08 (Spring)',
+      description:
+        'Maximum cold work — spring temper for demanding fatigue applications in electrical contacts and precision springs',
+      tensileStrength: { min: 620, max: 690, typical: 655 },
+      yieldStrength: { min: 565, max: 620, typical: 590 },
+      elongation: { min: 3, max: 7, typical: 4 },
+      hardness: { rockwellB: 90 },
+    },
+  ],
+  relatedMaterials: ['cu-c172', 'cu-c260', 'cu-c932'],
+};
+
+export const copperC464: Material = {
+  id: 'cu-c464',
+  name: 'C464 Naval Brass',
+  family: 'copper',
+  subFamily: 'Brass',
+  mechanical: {
+    density: 8.41,
+    tensileStrength: { min: 370, max: 590, typical: 415 },
+    yieldStrength: { min: 170, max: 517, typical: 200 },
+    elongation: { min: 15, max: 50, typical: 40 },
+    hardness: {
+      brinell: { min: 75, max: 160, typical: 87 },
+      rockwellB: { min: 30, max: 78, typical: 52 },
+    },
+    elasticModulus: 105,
+    shearModulus: 39,
+    poissonRatio: 0.34,
+    fatigueStrength: { min: 138, max: 207, typical: 159 },
+  },
+  thermal: {
+    conductivity: 116,
+    thermalExpansion: 21.2,
+    specificHeat: 377,
+    meltingRange: { min: 900, max: 940 },
+  },
+  processability: {
+    weldability: 'Fair',
+    machinability: 'Good',
+    formability: 'Good',
+    heatTreatable: false,
+    weldNotes:
+      'Fair weldability — zinc fuming above 900°C is a concern. TIG welding with naval brass or silicon bronze filler in annealed condition is feasible. Silver brazing is preferred for leak-tight joints. Avoid oxyacetylene — zinc fumes are toxic. Pre-heat to 150°C for sections over 12 mm.',
+  },
+  standards: {
+    astm: ['B21', 'B171'],
+    uns: 'C46400',
+  },
+  corrosionResistance: 'Good',
+  relativeCost: 3,
+  description:
+    'C464 naval brass (59-62% Cu, 37-40% Zn, 0.5-1.0% Sn) was developed specifically for seawater service. The 1% tin addition to 60/40 yellow brass dramatically reduces dezincification — selective dissolution of zinc that weakens standard brasses in seawater and brackish water. Naval brass has been used in marine hardware for over a century, providing a good combination of strength, machinability, corrosion resistance in seawater, and cost-effectiveness. It is available as rod, plate, and tubular products for propeller shafts, marine hardware, condenser tube sheets, and naval fittings.',
+  keyCharacteristics: [
+    '1% Sn addition inhibits dezincification — the key property vs standard yellow brass in seawater',
+    'Better seawater corrosion resistance than C260 or C272 brasses',
+    'Good machinability — higher zinc content (vs C510) improves chip breaking',
+    'Moderate strength with good ductility for forming marine hardware',
+    'Lower cost than tin bronze or copper-nickel for general marine applications',
+    'Good resistance to biofouling in marine environments',
+  ],
+  commonApplications: [
+    'Marine propeller shafts and bushings',
+    'Naval condenser and heat exchanger tube sheets',
+    'Marine hardware: nuts, bolts, and fittings',
+    'Pump impellers and valve bodies for seawater',
+    'Porthole frames and marine window hardware',
+    'Seawater piping and fittings',
+    'Deck hardware and cleats',
+  ],
+  industries: ['Marine', 'Naval', 'Plumbing', 'Oil & Gas'],
+  beginnerNote:
+    "Naval brass is brass that's been modified specifically to survive in seawater. Regular brass corrodes in seawater through a process called dezincification — the zinc dissolves out, leaving behind a weakened spongy copper shell. Adding 1% tin prevents this. If you need a brass fitting for a marine or seawater application, C464 naval brass is the default choice. It's also a good all-around material for general marine hardware like propeller shafts and pump fittings.",
+  expertNote:
+    'Dezincification mechanism: in stagnant or slowly flowing seawater at temperatures above ~60°C, the Zn-rich alpha/beta brass phases selectively dissolve; the plugging form creates an apparent intact surface masking catastrophic subsurface dezincification. Tin inhibition: Sn segregates to brass surfaces and inhibits Zn preferential dissolution via selective adsorption. C464 dezincification resistance: passes ISO 6509 test (1% CuCl2, 75°C, 24h — max 200 µm dezincification depth vs >500 µm for uninhibited brasses). C464 vs C280 Muntz Metal: C464 dezincification-resistant; Muntz (60/40, no Sn) is not DZR. Stress corrosion cracking: C464 still susceptible to SCC in ammoniated environments — specify C706 or C715 copper-nickel for ammonia-exposed marine condensers. Composition: 59-62% Cu, 0.5-1.0% Sn, remainder Zn, Fe ≤0.10%, Pb ≤0.20%. Annealed at 425-600°C.',
+  tempers: [
+    {
+      designation: 'O60 (Annealed)',
+      description:
+        'Fully annealed — maximum ductility and corrosion resistance for marine hardware and fittings',
+      tensileStrength: { min: 370, max: 415, typical: 385 },
+      yieldStrength: { min: 170, max: 215, typical: 200 },
+      elongation: { min: 35, max: 50, typical: 40 },
+      hardness: { brinell: 87 },
+    },
+    {
+      designation: 'H02 (1/2 Hard)',
+      description:
+        'Moderate cold work — increased strength for marine shafts and structural fittings',
+      tensileStrength: { min: 450, max: 520, typical: 480 },
+      yieldStrength: { min: 380, max: 450, typical: 415 },
+      elongation: { min: 18, max: 28, typical: 22 },
+      hardness: { rockwellB: 68 },
+    },
+    {
+      designation: 'H04 (Hard)',
+      description:
+        'Heavy cold work — high strength condition for threaded components and shafts requiring maximum load capacity',
+      tensileStrength: { min: 530, max: 590, typical: 555 },
+      yieldStrength: { min: 460, max: 517, typical: 485 },
+      elongation: { min: 15, max: 22, typical: 18 },
+      hardness: { rockwellB: 78 },
+    },
+  ],
+  relatedMaterials: ['cu-c260', 'cu-c110', 'cu-c932'],
+};
+
 export const pureCopperGrades: Material[] = [copperC110];
-export const brassBronzeGrades: Material[] = [copperC172, copperC260, copperC932];
+export const brassBronzeGrades: Material[] = [copperC172, copperC260, copperC932, copperC510, copperC464];
 export const allCopperGrades: Material[] = [...pureCopperGrades, ...brassBronzeGrades];

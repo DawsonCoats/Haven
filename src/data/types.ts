@@ -1,4 +1,28 @@
 export type Rating = 'Excellent' | 'Good' | 'Fair' | 'Poor' | 'N/A';
+
+export type CoatingEffect = 'Significantly Improves' | 'Improves' | 'No Change' | 'Reduces' | 'Eliminates';
+
+export interface CoatingPropertyEffect {
+  property: string;           // e.g. "Corrosion Resistance"
+  effect: CoatingEffect;
+  detail: string;             // e.g. "Provides sacrificial zinc barrier, excellent in outdoor environments"
+}
+
+export interface Coating {
+  id: string;
+  name: string;
+  shortName: string;          // e.g. "Anodize II"
+  applicableFamilies: MaterialFamily[];
+  description: string;
+  thickness: string;          // e.g. "5–25 µm"
+  temperatureLimit: number;   // max service temp °C
+  propertyEffects: CoatingPropertyEffect[];
+  fatigueEffect?: CoatingEffect;  // separate since it's important
+  fatigueNote?: string;
+  commonUses: string[];
+  notes?: string;
+  color?: string;             // visual appearance
+}
 export type CostRating = 1 | 2 | 3 | 4 | 5;
 
 export interface Range {
