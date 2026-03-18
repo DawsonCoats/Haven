@@ -98,6 +98,8 @@ export const al2024: Material = {
     },
   ],
   relatedMaterials: ['al-7075', 'al-6061', 'al-2011'],
+  availableForms: ['sheet', 'plate', 'bar', 'rod', 'tube', 'extrusion', 'forging'],
+  manufacturingProcesses: ['machining', 'forming', 'forging', 'rolling'],
 };
 
 export const al2011: Material = {
@@ -180,6 +182,8 @@ export const al2011: Material = {
     },
   ],
   relatedMaterials: ['al-2024', 'al-6061'],
+  availableForms: ['bar', 'rod', 'extrusion'],
+  manufacturingProcesses: ['machining'],
 };
 
 export const al2017: Material = {
@@ -260,6 +264,8 @@ export const al2017: Material = {
     },
   ],
   relatedMaterials: ['al-2024', 'al-2011'],
+  availableForms: ['bar', 'rod', 'wire', 'extrusion'],
+  manufacturingProcesses: ['machining', 'forging'],
 };
 
 export const al2219: Material = {
@@ -357,6 +363,8 @@ export const al2219: Material = {
     },
   ],
   relatedMaterials: ['al-2024', 'al-7075'],
+  availableForms: ['sheet', 'plate', 'bar', 'rod', 'forging'],
+  manufacturingProcesses: ['machining', 'forming', 'forging', 'welding'],
 };
 
 export const aluminumSeries2xxx: Material[] = [al2024, al2011, al2017, al2219];

@@ -76,6 +76,9 @@ export function NavBar() {
                 <Link href="/families/copper" className="block px-4 py-2.5 text-sm text-zinc-200 hover:bg-zinc-700">
                   Copper Alloys
                 </Link>
+                <Link href="/families/cast-iron" className="block px-4 py-2.5 text-sm text-zinc-200 hover:bg-zinc-700">
+                  Cast Iron
+                </Link>
               </div>
             )}
           </div>

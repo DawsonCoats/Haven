@@ -97,6 +97,8 @@ export const al6061: Material = {
     },
   ],
   relatedMaterials: ['al-6063', 'al-6082', 'al-7075', 'al-2024'],
+  availableForms: ['bar', 'rod', 'tube', 'pipe', 'sheet', 'plate', 'extrusion', 'structural-angle', 'c-channel', 'i-beam', 'forging'],
+  manufacturingProcesses: ['machining', 'forming', 'extrusion', 'forging', 'welding', 'rolling'],
 };
 
 export const al6063: Material = {
@@ -187,6 +189,8 @@ export const al6063: Material = {
     },
   ],
   relatedMaterials: ['al-6061', 'al-6082', 'al-6005A'],
+  availableForms: ['bar', 'rod', 'tube', 'pipe', 'extrusion', 'structural-angle', 'c-channel', 'i-beam'],
+  manufacturingProcesses: ['extrusion', 'machining', 'forming', 'welding'],
 };
 
 export const al6082: Material = {
@@ -276,6 +280,8 @@ export const al6082: Material = {
     },
   ],
   relatedMaterials: ['al-6061', 'al-6005A', 'al-6063'],
+  availableForms: ['bar', 'rod', 'plate', 'extrusion', 'structural-angle', 'i-beam'],
+  manufacturingProcesses: ['extrusion', 'machining', 'forging', 'welding'],
 };
 
 export const al6005A: Material = {
@@ -365,6 +371,8 @@ export const al6005A: Material = {
     },
   ],
   relatedMaterials: ['al-6061', 'al-6063', 'al-6082'],
+  availableForms: ['extrusion', 'bar', 'structural-angle', 'c-channel'],
+  manufacturingProcesses: ['extrusion', 'machining', 'welding'],
 };
 
 export const al6013: Material = {
@@ -451,6 +459,8 @@ export const al6013: Material = {
     },
   ],
   relatedMaterials: ['al-6061', 'al-2024', 'al-7075'],
+  availableForms: ['sheet', 'plate', 'bar', 'extrusion'],
+  manufacturingProcesses: ['machining', 'forming', 'rolling', 'welding'],
 };
 
 export const al6351: Material = {
@@ -539,6 +549,8 @@ export const al6351: Material = {
     },
   ],
   relatedMaterials: ['al-6061', 'al-6063', 'al-6082'],
+  availableForms: ['bar', 'rod', 'tube', 'extrusion', 'structural-angle'],
+  manufacturingProcesses: ['extrusion', 'machining', 'welding'],
 };
 
 export const aluminumSeries6xxx: Material[] = [al6061, al6063, al6082, al6005A, al6013, al6351];

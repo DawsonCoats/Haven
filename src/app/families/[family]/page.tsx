@@ -13,7 +13,7 @@ interface Props {
 const familyConfig = {
   aluminum: {
     title: 'Aluminum Alloys',
-    description: 'Complete reference for wrought aluminum alloys, from commercially pure 1xxx to ultra-high-strength 7xxx series.',
+    description: 'Wrought and cast aluminum alloys, from commercially pure 1xxx to ultra-high-strength 7xxx series and common die/sand casting grades.',
     seriesGroups: [
       { slug: '1xxx', label: '1xxx Series', subFamily: '1xxx Series' },
       { slug: '2xxx', label: '2xxx Series', subFamily: '2xxx Series' },
@@ -22,11 +22,12 @@ const familyConfig = {
       { slug: '5xxx', label: '5xxx Series', subFamily: '5xxx Series' },
       { slug: '6xxx', label: '6xxx Series', subFamily: '6xxx Series' },
       { slug: '7xxx', label: '7xxx Series', subFamily: '7xxx Series' },
+      { slug: 'cast-aluminum', label: 'Cast Aluminum', subFamily: 'Cast Aluminum' },
     ],
   },
   steel: {
     title: 'Steel Alloys',
-    description: 'Carbon, alloy, and stainless steels covering structural, tooling, corrosion-resistant, and precipitation-hardening applications.',
+    description: 'Carbon, alloy, stainless, and cast steels covering structural, tooling, corrosion-resistant, precipitation-hardening, and casting applications.',
     seriesGroups: [
       { slug: 'carbon', label: 'Carbon Steel', subFamily: 'Carbon Steel' },
       { slug: 'alloy', label: 'Alloy Steel', subFamily: 'Alloy Steel' },
@@ -34,6 +35,7 @@ const familyConfig = {
       { slug: '400-series', label: '400-Series Stainless', subFamily: '400-Series Stainless' },
       { slug: 'ph-stainless', label: 'PH Stainless', subFamily: 'PH Stainless' },
       { slug: 'duplex', label: 'Duplex Stainless', subFamily: 'Duplex Stainless' },
+      { slug: 'cast-steel', label: 'Cast Steel', subFamily: 'Cast Steel' },
     ],
   },
   titanium: {
@@ -54,6 +56,15 @@ const familyConfig = {
       { slug: 'bronze', label: 'Bronze', subFamily: 'Bronze' },
     ],
   },
+  'cast-iron': {
+    title: 'Cast Iron',
+    description: 'Gray iron, ductile (nodular) iron, and malleable iron grades covering structural, automotive, and industrial casting applications.',
+    seriesGroups: [
+      { slug: 'gray-iron', label: 'Gray Iron', subFamily: 'Gray Iron' },
+      { slug: 'ductile-iron', label: 'Ductile Iron', subFamily: 'Ductile Iron' },
+      { slug: 'malleable-iron', label: 'Malleable Iron', subFamily: 'Malleable Iron' },
+    ],
+  },
 } as const;
 
 export function generateStaticParams() {
@@ -62,6 +73,7 @@ export function generateStaticParams() {
     { family: 'steel' },
     { family: 'titanium' },
     { family: 'copper' },
+    { family: 'cast-iron' },
   ];
 }
 
@@ -77,7 +89,7 @@ export default async function FamilyPage({ params }: Props) {
   const config = familyConfig[family as keyof typeof familyConfig];
   if (!config) notFound();
 
-  const familyMaterials = getMaterialsByFamily(family as 'aluminum' | 'steel' | 'titanium' | 'copper');
+  const familyMaterials = getMaterialsByFamily(family);
 
   const seriesGroups = config.seriesGroups.map((sg) => ({
     slug: sg.slug,
@@ -93,7 +105,7 @@ export default async function FamilyPage({ params }: Props) {
       <nav className="flex items-center gap-2 text-xs text-zinc-500 mb-6">
         <Link href="/" className="hover:text-zinc-300">Home</Link>
         <span>/</span>
-        <span className="text-zinc-300 capitalize">{family}</span>
+        <span className="text-zinc-300 capitalize">{family.replace('-', ' ')}</span>
       </nav>
 
       {/* Header */}
@@ -130,7 +142,7 @@ export default async function FamilyPage({ params }: Props) {
             },
             {
               label: 'Grades Covered',
-              value: `${familyMaterials.length} alloys`,
+              value: `${familyMaterials.length} grades`,
             },
           ].map(({ label, value }) => (
             <div key={label} className="rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4">

@@ -96,6 +96,9 @@ export const al5052: Material = {
     },
   ],
   relatedMaterials: ['al-3003', 'al-5083', 'al-6061'],
+
+  availableForms: ['sheet', 'plate', 'bar', 'rod', 'tube', 'strip', 'wire'],
+  manufacturingProcesses: ['forming', 'rolling', 'machining', 'welding'],
 };
 
 export const al5083: Material = {
@@ -188,6 +191,9 @@ export const al5083: Material = {
     },
   ],
   relatedMaterials: ['al-5052', 'al-5754', 'al-6061'],
+
+  availableForms: ['sheet', 'plate', 'bar', 'rod', 'extrusion'],
+  manufacturingProcesses: ['forming', 'rolling', 'machining', 'welding'],
 };
 
 export const al5754: Material = {
@@ -277,6 +283,9 @@ export const al5754: Material = {
     },
   ],
   relatedMaterials: ['al-5052', 'al-5083'],
+
+  availableForms: ['sheet', 'plate', 'bar', 'strip'],
+  manufacturingProcesses: ['forming', 'rolling', 'welding'],
 };
 
 export const al5086: Material = {
@@ -373,6 +382,9 @@ export const al5086: Material = {
     },
   ],
   relatedMaterials: ['al-5052', 'al-5083', 'al-5754'],
+
+  availableForms: ['sheet', 'plate', 'bar', 'rod', 'tube'],
+  manufacturingProcesses: ['forming', 'rolling', 'machining', 'welding'],
 };
 
 export const aluminumSeries5xxx: Material[] = [al5052, al5083, al5754, al5086];

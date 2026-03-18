@@ -84,6 +84,9 @@ export const al1100: Material = {
     },
   ],
   relatedMaterials: ['al-3003', 'al-5052'],
+
+  availableForms: ['sheet', 'plate', 'bar', 'rod', 'wire', 'tube', 'strip', 'extrusion'],
+  manufacturingProcesses: ['forming', 'rolling', 'extrusion', 'machining', 'welding'],
 };
 
 export const aluminumSeries1xxx: Material[] = [al1100];

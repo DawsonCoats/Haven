@@ -10,6 +10,8 @@ import { GitCompare, ArrowLeft } from 'lucide-react';
 import { MaterialRadar, GoodmanChart } from '../../../components/charts';
 import { DataSheetButton } from './DataSheetButton';
 import { CoatingsPanel } from '../../../components/materials/CoatingsPanel';
+import { FormsGrid } from '../../../components/materials/FormsGrid';
+import { ManufacturingBadges } from '../../../components/materials/ManufacturingBadges';
 import { estimateCost } from '../../../data/pricing';
 import type { Metadata } from 'next';
 import type { Material } from '../../../data/types';
@@ -291,6 +293,23 @@ export default async function MaterialDetailPage({ params }: Props) {
             <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wide mb-3">Property Profile</h3>
             <MaterialRadar material={m} />
           </div>
+
+          {/* Available forms */}
+          {m.availableForms && m.availableForms.length > 0 && (
+            <div className="rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4">
+              <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wide mb-3">Available Forms</h3>
+              <FormsGrid forms={m.availableForms} />
+            </div>
+          )}
+
+          {/* Manufacturing processes */}
+          {m.manufacturingProcesses && m.manufacturingProcesses.length > 0 && (
+            <div className="rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4">
+              <h3 className="text-sm font-semibold text-zinc-400 uppercase tracking-wide mb-3">Manufacturing</h3>
+              <ManufacturingBadges processes={m.manufacturingProcesses} />
+            </div>
+          )}
+
 
           {/* Relative cost */}
           <div className="rounded-xl bg-zinc-800/30 border border-zinc-700/50 p-4">

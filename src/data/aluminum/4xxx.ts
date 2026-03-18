@@ -79,6 +79,8 @@ export const al4032: Material = {
     },
   ],
   relatedMaterials: ['al-6061', 'al-2024'],
+  availableForms: ['bar', 'rod', 'wire', 'forging', 'casting'],
+  manufacturingProcesses: ['forging', 'casting', 'machining'],
 };
 
 export const aluminumSeries4xxx: Material[] = [al4032];

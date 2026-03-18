@@ -3,11 +3,13 @@ export * from './aluminum';
 export * from './steel';
 export * from './titanium';
 export * from './copper';
+export * from './cast-iron';
 
 import { allAluminum } from './aluminum';
 import { allSteel } from './steel';
 import { allTitanium } from './titanium';
 import { allCopper } from './copper';
+import { allCastIron } from './cast-iron';
 import { Material } from './types';
 
 export const allMaterials: Material[] = [
@@ -15,13 +17,14 @@ export const allMaterials: Material[] = [
   ...allSteel,
   ...allTitanium,
   ...allCopper,
+  ...allCastIron,
 ];
 
 export function getMaterialById(id: string): Material | undefined {
   return allMaterials.find((m) => m.id === id);
 }
 
-export function getMaterialsByFamily(family: 'aluminum' | 'steel' | 'titanium' | 'copper'): Material[] {
+export function getMaterialsByFamily(family: string): Material[] {
   return allMaterials.filter((m) => m.family === family);
 }
 
@@ -44,6 +47,7 @@ export const aluminumSubFamilies = [
   '5xxx Series',
   '6xxx Series',
   '7xxx Series',
+  'Cast Aluminum',
 ];
 
 export const steelSubFamilies = [
@@ -53,6 +57,7 @@ export const steelSubFamilies = [
   '400-Series Stainless',
   'PH Stainless',
   'Duplex Stainless',
+  'Cast Steel',
 ];
 
 export const titaniumSubFamilies = [
@@ -67,6 +72,12 @@ export const copperSubFamilies = [
   'Bronze',
 ];
 
+export const castIronSubFamilies = [
+  'Gray Iron',
+  'Ductile Iron',
+  'Malleable Iron',
+];
+
 export const seriesSlugMap: Record<string, string> = {
   // Aluminum
   '1xxx': '1xxx Series',
@@ -76,6 +87,7 @@ export const seriesSlugMap: Record<string, string> = {
   '5xxx': '5xxx Series',
   '6xxx': '6xxx Series',
   '7xxx': '7xxx Series',
+  'cast-aluminum': 'Cast Aluminum',
   // Steel
   'carbon': 'Carbon Steel',
   'alloy': 'Alloy Steel',
@@ -83,6 +95,7 @@ export const seriesSlugMap: Record<string, string> = {
   '400-series': '400-Series Stainless',
   'ph-stainless': 'PH Stainless',
   'duplex': 'Duplex Stainless',
+  'cast-steel': 'Cast Steel',
   // Titanium
   'cp': 'cp-Ti',
   'alpha-beta': 'Alpha-Beta',
@@ -91,6 +104,10 @@ export const seriesSlugMap: Record<string, string> = {
   'beryllium': 'Beryllium Copper',
   'brass': 'Brass',
   'bronze': 'Bronze',
+  // Cast Iron
+  'gray-iron': 'Gray Iron',
+  'ductile-iron': 'Ductile Iron',
+  'malleable-iron': 'Malleable Iron',
 };
 
 export const subFamilySlugMap: Record<string, string> = Object.fromEntries(

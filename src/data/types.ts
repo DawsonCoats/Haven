@@ -31,7 +31,17 @@ export interface Range {
   typical?: number;
 }
 
-export type MaterialFamily = 'aluminum' | 'steel' | 'titanium' | 'copper';
+export type MaterialFamily = 'aluminum' | 'steel' | 'titanium' | 'copper' | 'cast-iron';
+
+export type MaterialForm =
+  | 'bar' | 'rod' | 'wire' | 'plate' | 'sheet' | 'strip'
+  | 'tube' | 'pipe' | 'structural-angle' | 'c-channel' | 'i-beam'
+  | 'forging' | 'casting' | 'extrusion' | 'powder';
+
+export type ManufacturingProcess =
+  | 'machining' | 'casting' | 'forming' | 'forging'
+  | 'welding' | 'additive' | 'extrusion' | 'rolling';
+
 
 export interface Temper {
   designation: string;
@@ -101,4 +111,7 @@ export interface Material {
 
   tempers?: Temper[];
   relatedMaterials?: string[];
+
+  availableForms?: MaterialForm[];
+  manufacturingProcesses?: ManufacturingProcess[];
 }

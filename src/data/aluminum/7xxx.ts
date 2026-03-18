@@ -95,6 +95,8 @@ export const al7075: Material = {
     },
   ],
   relatedMaterials: ['al-7050', 'al-7068', 'al-2024'],
+  availableForms: ['sheet', 'plate', 'bar', 'rod', 'tube', 'extrusion', 'forging'],
+  manufacturingProcesses: ['machining', 'forming', 'forging', 'rolling'],
 };
 
 export const al7050: Material = {
@@ -187,6 +189,8 @@ export const al7050: Material = {
     },
   ],
   relatedMaterials: ['al-7075', 'al-7068', 'al-2024'],
+  availableForms: ['sheet', 'plate', 'bar', 'rod', 'forging'],
+  manufacturingProcesses: ['machining', 'forging', 'rolling'],
 };
 
 export const al7068: Material = {
@@ -276,6 +280,8 @@ export const al7068: Material = {
     },
   ],
   relatedMaterials: ['al-7075', 'al-7050'],
+  availableForms: ['bar', 'rod', 'plate', 'forging'],
+  manufacturingProcesses: ['machining', 'forging'],
 };
 
 export const al7001: Material = {
@@ -355,6 +361,8 @@ export const al7001: Material = {
     },
   ],
   relatedMaterials: ['al-7075', 'al-7068', 'al-7050'],
+  availableForms: ['sheet', 'plate', 'bar', 'extrusion'],
+  manufacturingProcesses: ['machining', 'forming', 'rolling'],
 };
 
 export const al7150: Material = {
@@ -434,6 +442,8 @@ export const al7150: Material = {
     },
   ],
   relatedMaterials: ['al-7075', 'al-7050', 'al-7068'],
+  availableForms: ['sheet', 'plate', 'bar'],
+  manufacturingProcesses: ['machining', 'rolling'],
 };
 
 export const aluminumSeries7xxx: Material[] = [al7075, al7050, al7068, al7001, al7150];
